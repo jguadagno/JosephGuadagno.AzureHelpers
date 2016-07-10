@@ -424,7 +424,7 @@ namespace JosephGuadagno.AzureHelpers.Storage
                 throw new ArgumentNullException(nameof(tableEntity), "The table entity is null");
             }
 
-            var deleteTableOperation = TableOperation.Insert(tableEntity);
+            var deleteTableOperation = TableOperation.Delete(tableEntity);
             var tableResult = cloudTable.Execute(deleteTableOperation);
 
             return (HttpStatusCode)tableResult.HttpStatusCode;
