@@ -27,12 +27,12 @@ namespace JosephGuadagno.AzureHelpers.Storage
 		}
 
 		/// <summary>
-		/// Creates an instance of the <see cref="Queue"/> using the supplied <paramref name="storageConnectionString">Storage Account Url</paramref>
+		/// Creates an instance of the <see cref="Queue"/> using the supplied <paramref name="storageConnectionConfigurationSettingName">Storage Account Url</paramref>
 		/// </summary>
-		/// <param name="storageConnectionString">A url to the cloud storage account to use.</param>
-		public Queue(string storageConnectionString)
+		/// <param name="storageConnectionConfigurationSettingName">A configuration setting that contains the url of the cloud storage account to use.</param>
+		public Queue(string storageConnectionConfigurationSettingName)
 		{
-			CloudStorageAccount = CloudStorageAccountHelper.GetStorageAccount(storageConnectionString);
+			CloudStorageAccount = CloudStorageAccountHelper.GetStorageAccount(storageConnectionConfigurationSettingName);
 		}
 
 		/// <summary>
@@ -82,11 +82,11 @@ namespace JosephGuadagno.AzureHelpers.Storage
 					{
 						return CloudQueues[queueName];
 					}
-					
+
 					CloudQueueClient queueClient = CloudStorageAccount.CreateCloudQueueClient();
 					CloudQueue queue = queueClient.GetQueueReference(queueName);
 					queue.SafeCreateIfNotExists();
-					
+
 					CloudQueues.Add(queueName, queue);
 					return queue;
 

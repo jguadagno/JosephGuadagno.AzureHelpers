@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using JosephGuadagno.AzureHelpers.Tests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.WindowsAzure.Storage.Table;
 

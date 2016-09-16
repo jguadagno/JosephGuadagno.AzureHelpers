@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using JosephGuadagno.AzureHelpers.Extensions;
-using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -424,6 +420,10 @@ namespace JosephGuadagno.AzureHelpers.Storage
                 throw new ArgumentNullException(nameof(tableEntity), "The table entity is null");
             }
 
+            if (tableEntity.ETag == null)
+            {
+                tableEntity.ETag = "*";
+            }
             var deleteTableOperation = TableOperation.Delete(tableEntity);
             var tableResult = cloudTable.Execute(deleteTableOperation);
 
